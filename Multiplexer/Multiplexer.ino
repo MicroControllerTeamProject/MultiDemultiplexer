@@ -1,10 +1,10 @@
-int s0 = 8;
-int s1 = 9;
-int s2 = 10;
-int s3 = 11;
+int s0 = 4;
+int s1 = 5;
+int s2 = 6;
+int s3 = 7;
 
 //Mux in "SIG" pin
-int SIG_pin = 0;
+int SIG_pin = 3;
 
 void setup() {
 	pinMode(s0, OUTPUT);
@@ -16,6 +16,8 @@ void setup() {
 	digitalWrite(s1, LOW);
 	digitalWrite(s2, LOW);
 	digitalWrite(s3, LOW);
+
+	pinMode(3, INPUT_PULLUP);
 
 	Serial.begin(9600);
 }
@@ -29,7 +31,7 @@ void loop() {
 		Serial.print(i);
 		Serial.print("is : ");
 		Serial.println(readMux(i));
-		delay(1000);
+		delay(300);
 	}
 
 }
@@ -62,7 +64,7 @@ int readMux(int channel) {
 	}
 
 	//read the value at the SIG pin
-	int val = analogRead(SIG_pin);
+	int val = digitalRead(SIG_pin);
 
 	//return the value
 	return val;
